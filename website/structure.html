@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Project Structure - 100 Days of Web</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav>
-        <div class="logo">Shubham-cyber-prog 🚀</div>
+    <nav class="navbar">
+        <div class="logo">DevChallenge 🚀</div>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contribute.html">Contribute</a></li>
-            <li><a href="structure.html" class="active">Structure</a></li>
+            <li><a href="/index.html" class="active">Home</a></li>
+            <li><a href="/website/projects.html">Projects</a></li>
+            <li><a href="/website/showcase.html">Contributors Projects</a></li>
+            <li><a href="/website/contribute.html">Contribute</a></li>
+            <li><a href="/website/structure.html">Structure</a></li>
         </ul>
     </nav>
 
@@ -20,7 +23,17 @@
         <h1>🗂 Project Structure</h1>
         <p>Please follow this directory layout when adding new projects.</p>
 
-        <pre class="code-block">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <span class="control close"></span>
+                    <span class="control minimize"></span>
+                    <span class="control maximize"></span>
+                </div>
+                <div class="terminal-title">project-structure — tree — 80x24</div>
+            </div>
+            <div class="terminal-body">
+                <pre class="code-block" id="structure-code">
 100-days-web-projects/
 │
 ├── 📁 BEGINNER (Days 1-30)                # Basic Projects
@@ -133,8 +146,66 @@
 │   ├── 📁 day-93-94-open-source-contribution/
 │   ├── 📁 day-95-96-fullstack-application/
 │   ├── 📁 day-97-98-complex-dashboard/
-└── └── 📁 day-99-100-master-project/
-        </pre>
+│   └── 📁 day-99-100-master-project/
+                </pre>
+            </div>
+        </div>
+
+        <script>
+            // Escape HTML special characters to prevent DOM text from being reinterpreted as HTML.
+            function escapeHtml(text) {
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;')
+                    .replace(/\//g, '&#x2F;');
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const codeBlock = document.getElementById('structure-code');
+                const lines = codeBlock.innerText.split('\n');
+
+                const processLine = (line) => {
+                    // Tree structure characters
+                    const treeChars = /([│├└]──|│)/g;
+
+                    // Work on an escaped version of the line so original text cannot inject HTML
+                    let html = escapeHtml(line);
+
+                    // Highlight structure characters
+                    html = html.replace(treeChars, '<span class="tree-guide">$1</span>');
+
+                    // Highlight folders (lines with 📁)
+                    if (line.includes('📁')) {
+                        // Extract folder name
+                        html = html.replace(/(📁\s+)([^#\n]+)/, '<span class="tree-icon">$1</span><span class="tree-folder">$2</span>');
+                    } else if (line.match(/[a-zA-Z0-9_\-\.]+\.[a-zA-Z0-9]+/)) {
+                        // Highlight files (heuristics: contains extension)
+                        // Be careful not to match inside comments
+                        html = html.replace(/([a-zA-Z0-9_\-\.]+\.[a-zA-Z0-9]+)/, '<span class="tree-file">$1</span>');
+                    }
+
+                    // Highlight comments
+                    if (line.includes('#')) {
+                        // Find the first '#' position in the original (unescaped) line
+                        const hashIndex = line.indexOf('#');
+                        if (hashIndex !== -1) {
+                            // Since html is an escaped version of line with the same character order
+                            const escapedBefore = escapeHtml(line.slice(0, hashIndex));
+                            const escapedComment = escapeHtml(line.slice(hashIndex + 1));
+                            return `${escapedBefore}<span class="tree-comment">#${escapedComment}</span>`;
+                        }
+                    }
+
+                    return html;
+                };
+
+                codeBlock.innerHTML = lines.map(processLine).join('\n');
+            });
+        </script>
     </main>
 </body>
+
 </html>

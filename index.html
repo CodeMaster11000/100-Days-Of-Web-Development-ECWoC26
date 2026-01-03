@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 Days of Web Development - Showcase</title>
     <link rel="stylesheet" href="website/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <nav>
-        <div class="logo">Shubham-cyber-prog 🚀</div>
+    <nav class="navbar">
+        <div class="logo">DevChallenge 🚀</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="website/projects.html">Projects</a></li>
+            <li><a href="website/showcase.html">Contributors Projects</a></li>
             <li><a href="website/contribute.html">Contribute</a></li>
             <li><a href="website/structure.html">Structure</a></li>
         </ul>
@@ -26,7 +32,9 @@
     <main class="container">
         <section>
             <h2>📖 About the Project</h2>
-            <p>This repository documents the <strong>100 Days of Web Development Challenge</strong>. The goal is to strengthen frontend fundamentals, improve problem-solving, and build real-world projects while maintaining daily GitHub consistency.</p>
+            <p style="color: var(--text-secondary);">This repository documents the <strong>100 Days of Web Development
+                    Challenge</strong>. The goal is to strengthen frontend fundamentals, improve problem-solving, and
+                build real-world projects while maintaining daily GitHub consistency.</p>
         </section>
 
         <section>
@@ -38,10 +46,29 @@
                 <li>✅ Prepare for Open Source, Internships & GSoC</li>
             </ul>
         </section>
+
+        <section id="tracker-section">
+    <h2>📊 Your Progress</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        Click a day to mark it as complete. Your progress is saved automatically!
+    </p>
+
+    <div class="tracker-stats">
+        <span>Completed: <strong id="completedCount">0</strong>/100</span>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+    </div>
+
+    <div class="progress-grid" id="progressGrid">
+        </div>
+</section>
     </main>
 
     <footer>
         <p>Maintained by the Shubham-cyber-prog</p>
     </footer>
+    <script src="website/tracker.js"></script>
 </body>
+
 </html>
