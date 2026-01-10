@@ -1,4 +1,5 @@
 
+
 # Upgrade Projects Page Filters
 
 ## Tasks to Complete
@@ -8,6 +9,7 @@
 - [ ] Display a results count (e.g., "Showing X of Y projects")
 - [ ] Clean up the script.js by removing unused tab-related code
 - [ ] Ensure the filters work seamlessly with real-time updates
+
 
 # Update script.js for localStorage integration
 
@@ -19,4 +21,3 @@
 - [x] Add event listener for checkbox changes to toggle completed status and save to localStorage
 - [x] On init, load completed days from localStorage and apply to projects
 - [ ] Test marking/unmarking projects and persistence across reloads
-

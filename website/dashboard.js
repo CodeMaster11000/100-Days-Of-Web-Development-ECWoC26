@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
     // Projects data
     const projects = [
         // BEGINNER (Days 1-30) - Updated to match your actual Day XX folders
