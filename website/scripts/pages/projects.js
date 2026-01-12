@@ -183,7 +183,7 @@ function renderProjects(filter = 'All') {
         // Whole card opens live demo if available
         if (!isDisabled) {
             card.addEventListener('click', () => {
-                window.location.href = liveLink;
+                window.location.assign(liveLink);
             });
         } else {
             card.classList.add('is-disabled');
