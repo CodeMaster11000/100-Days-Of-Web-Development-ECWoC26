@@ -265,7 +265,7 @@ Some projects in this repository (such as the login system and Day 88) use **Fir
 - Go to **Sign-in method** tab
 - Enable the authentication methods you need:
   - **Email/Password** (for login.html)
-  - **Anonymous** (for Day 88)
+  - **Anonymous** (for guest login and Day 88)
   - Others as needed (Google, GitHub, etc.)
 
 #### 6. Enable Firestore Database (for Day 88)
