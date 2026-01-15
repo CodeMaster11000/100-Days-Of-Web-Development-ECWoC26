@@ -87,8 +87,6 @@ This repository documents my **100 Days of Web Development journey**, where I:
 └── 📄 CONTRIBUTING.md                     # Contribution Guidelines
 ```
 
-               # Dependencies configuration
-
 ---
 
 ## 🚀 Setup Guide for New Contributors
