@@ -28,7 +28,9 @@ const folderMap = {
     91: "Day 91", 92: "Day 92", 93: "Day 93", 94: "Day 94", 95: "Day 95",
     96: "Day 96", 97: "Day 97", 98: "Day 98", 99: "Day 99", 100: "Day100", 101: "Day 101",
     145: "Day 145",
-    151: "Day 151"
+    151: "Day 151",
+    152: "Day 152 - Newsly",
+    155: "Day 155"
 };
 
 // Full 100-Day Project List
@@ -104,7 +106,9 @@ const allProjects = [
     { day: 147, title: "Advanced Financial Planning Tool", tech: ["Next.js", "Prisma"] }, { day: 148, title: "AI-Powered Document Summarization Tool", tech: ["OpenAI API", "Node.js"] },
     { day: 149, title: "Custom Knowledge Base System", tech: ["React", "Node.js"] }, { day: 150, title: "AI-Powered Video Analysis Tool", tech: ["Python", "Django"] },
     // DAY 151
-    { day: 151, title: "Mini Geo Guesser", tech: ["HTML", "CSS", "JS"] }
+    { day: 151, title: "Mini Geo Guesser", tech: ["HTML", "CSS", "JS"] },
+    { day: 152, title: "Newsly", tech: ["HTML", "CSS", "JS"] },
+    { day: 155, title: "Tetris Game", tech: ["HTML", "CSS", "JS"] }
 ];
 
 function getDifficulty(day) {
@@ -130,14 +134,21 @@ function renderProjects(filter = 'All') {
         let codeLink = '#';
         let isDisabled = false;
 
-        if (folderName) {
-            // Updated path to ensure it points correctly from your projects page
+        /* SPECIAL CASE: README TOOL KIT (DAY 103) */
+        if (project.day === 103) {
+            liveLink = 'https://100dayswebdevelopment-ecwoc.netlify.app/public/Day%20103/index.html';
+            codeLink = `${REPO_URL}/${folderName}`;
+            isDisabled = false;
+        }
+        else if (folderName) {
             liveLink = `../../public/${folderName}/index.html`;
             codeLink = `${REPO_URL}/${folderName}`;
-        } else {
+        }
+        else {
             isDisabled = true;
             codeLink = REPO_URL;
         }
+
 
         const dayLabel = project.endDay ? `DAYS ${project.day}-${project.endDay}` : `DAY ${project.day}`;
 
@@ -146,7 +157,24 @@ function renderProjects(filter = 'All') {
         card.style.animationDelay = `${Math.min(delay, 1000)}ms`;
         delay += 30;
 
-        const techTags = project.tech ? project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('') : '';
+        const techIconMap = {
+            HTML: 'fa-html5',
+            CSS: 'fa-css3-alt',
+            JS: 'fa-js',
+            'Node.js': 'fa-node',
+            React: 'fa-react',
+            API: 'fa-plug'
+        };
+
+        const techTags = project.tech
+            ? project.tech.map(t => `
+        <span class="tech-tag">
+            <i class="fa-brands ${techIconMap[t] || 'fa-code'}"></i>
+            ${t}
+        </span>
+      `).join('')
+            : '';
+
 
         card.innerHTML = `
             <div class="card-top">
